@@ -1,12 +1,16 @@
+## Ejemplo de proyecto para COMA
+
+Este es un ejemplo creado para contener las estructuras y el código que más se repiten dentro del proyecto para ejemplificar cómo es trabajar dentro del proyecto principal.
+
 ## Retos
 
 1. **La nueva tarea no aparece tras crearla**  
-   Tras enviar el formulario, la aplicación recarga pero la tarea recién añadida no se muestra.
 
    <details>
    <summary>Solución (diff)</summary>
 
    ```diff
+   diff --git a/web/index.jsp b/web/index.jsp
    @@
    -    if (request.getMethod().equals("POST")) {
    -        String title = request.getParameter("title");
@@ -24,17 +28,17 @@
    +
    +        created = tasks.addTask(title, description);
    +    }
-  ```
+   ```
 
    </details>
 
-2. **Título y descripción intercambiados al listar tareas**
-   Al recuperar las tareas, el campo `title` y la `description` vienen invertidos.
+2. **Título y descripción intercambiados al listar tareas**  
 
    <details>
    <summary>Solución (diff)</summary>
 
    ```diff
+   diff --git a/src/java/tasks/TaskController.java b/src/java/tasks/TaskController.java
    @@ public ArrayList<Task> getTasks() {
    -                Task t = new Task(
    -                    res.getString("id"),
@@ -52,13 +56,13 @@
 
    </details>
 
-3. **La tarea no cambia de estado al marcar/desmarcar**
-   El query que actualiza `done` perdió el `NOT`, por lo que el campo nunca se invierte.
+3. **La tarea no cambia de estado al marcar/desmarcar**  
 
    <details>
    <summary>Solución (diff)</summary>
 
    ```diff
+   diff --git a/src/java/tasks/TaskController.java b/src/java/tasks/TaskController.java
    @@ public boolean markTask(String id) {
    -        String query = String.format(
    -            "UPDATE tasks SET done = done WHERE id = \"%s\";", id
