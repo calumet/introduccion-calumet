@@ -1,0 +1,5 @@
+com\mycompany\coma\resources\JakartaEE8Resource.class
+com\mycompany\coma\tasks\Task.class
+com\mycompany\coma\JakartaRestConfiguration.class
+com\mycompany\coma\tasks\TaskController.class
+com\mycompany\coma\db\DBConnection.class
