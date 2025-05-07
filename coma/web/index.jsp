@@ -5,14 +5,14 @@
     boolean created = true;
     TaskController tasks = new TaskController();
     
+    java.util.List<Task> taskList = tasks.getTasks();
+
     if (request.getMethod().equals("POST")) {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
 
         created = tasks.addTask(title, description);
     }
-
-    java.util.List<Task> taskList = tasks.getTasks();
 %>
 <!DOCTYPE html>
 <html lang="es">

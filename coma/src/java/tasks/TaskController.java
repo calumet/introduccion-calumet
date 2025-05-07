@@ -25,8 +25,8 @@ public class TaskController {
             while (res.next()) {
                 Task t = new Task(
                     res.getString("id"),
-                    res.getString("title"),
                     res.getString("description"),
+                    res.getString("title"),
                     res.getBoolean("done")
                 );
                 tasks.add(t);
@@ -98,7 +98,7 @@ public class TaskController {
     public boolean markTask(String id) {
         DBConnection conn = new DBConnection();
         String query = String.format(
-            "UPDATE tasks SET done = NOT done WHERE id = \"%s\";", id
+            "UPDATE tasks SET done = done WHERE id = \"%s\";", id
         );
 
         boolean success = conn.update(query);
